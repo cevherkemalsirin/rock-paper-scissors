@@ -1,6 +1,5 @@
 
 const ROUND_NUMBER = 5;
-const draw = "draw";
 
 
 function getComputerChoice()
@@ -25,7 +24,7 @@ function PlayRound(userChoice, computerChoice)
                 }
                 else
                 {
-                    return draw;
+                    return "draw";
                 }
             }
         break;
@@ -41,7 +40,7 @@ function PlayRound(userChoice, computerChoice)
                 }
                 else
                 {
-                    return draw;
+                    return "draw";
                 }
             }
         break;
@@ -57,7 +56,7 @@ function PlayRound(userChoice, computerChoice)
                 }
                 else
                 {
-                    return draw;
+                    return "draw";
                 }
             }
         break;
