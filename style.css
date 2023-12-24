@@ -77,6 +77,8 @@ h1{
     height: 150px;
     width: auto;
     border-radius: 20px;
+    border: 3px solid gold;
+    background-color: rgba(0, 0, 0, 0.514);
 }
 .vs{
     font-family:fantasy;
@@ -98,3 +100,14 @@ h1{
 
 }
 
+
+
+.notShine img{
+    height: 200px;
+    width: auto;
+    opacity: 0.5;
+}
+.shine{
+    border-color: gold;
+   background-color: gold;
+}

@@ -2,14 +2,16 @@
 const ROUND_NUMBER = 5;
 
 
-function getComputerChoice()
+function getComputerPokemonImg()
 {
    let choice = Math.floor(Math.random() * 3) + 1;
-   return choice === 1 ? "rock": choice === 2 ? "paper" : "scissors"; 
+   const pokeBtn = document.querySelector(`.btn--${choice}`)
+   return pokeBtn.querySelector("img"); 
 }
 
 function PlayRound(userChoice, computerChoice)
 {
+    console.log(userChoice, computerChoice);
     switch(userChoice)
     {
         case "rock":
@@ -67,27 +69,68 @@ function PlayRound(userChoice, computerChoice)
 
 function Game()
 {
-    let userWinNum = 0;
-    let userChoice = " ";
-    for(let i = 0; i <ROUND_NUMBER; i++ )
+    function UpdateResultImages(playerImg, computerImg)
     {
-       userChoice = prompt("Please enter the choice : ").toLowerCase();
-       let result = PlayRound(userChoice, getComputerChoice());
-       if(result === "user")
-       {
-        userWinNum++;
-        console.log("User has won this round!!!")
-       }
-       else if(result === "computer")
-       {
-        console.log("Computer has won this round!");
-       }
-       else
-       {
-        console.log("DRAW");
-       }
+        const playerSelectedImg = document.querySelector(".playerSelected");
+        const computerSelectedImg = document.querySelector(".computerSelected");
+
+        playerSelectedImg.setAttribute("src",playerImg.getAttribute("src"));
+        computerSelectedImg.setAttribute("src",computerImg.getAttribute("src"));
     }
 
-    Math.floor(ROUND_NUMBER / 2) < userWinNum ? console.log("User has won the GAME") : console.log("Computer has won the Game");
- }
 
+    const pokemonContainer = document.querySelector(".PokeContainer");
+    const pokeButtons = document.querySelectorAll(".poke");
+    let playerPokemon = " ";
+
+    pokemonContainer.addEventListener("mouseover", function(e)
+    { 
+        e.preventDefault();
+        const targetButton = e.target.closest(".poke");
+  
+        if (targetButton) {
+          pokeButtons.forEach((button) => {
+            if (button !== targetButton) button.classList.add("notShine");
+          });
+          targetButton.classList.add("shine");
+        }
+    });
+
+    pokemonContainer.addEventListener("mouseout", function(e)
+    {
+       
+        e.preventDefault();
+        const targetButton = e.target.closest(".poke");
+  
+        if (targetButton) {
+          pokeButtons.forEach((button) => {
+            if (button !== targetButton) button.classList.remove("notShine");
+          });
+          targetButton.classList.remove("shine");
+        }
+
+    });
+
+    pokemonContainer.addEventListener("click", function(e)
+    {
+        
+        e.preventDefault();
+        const targetButton = e.target.closest(".poke");
+        if (targetButton) {
+            const playerImg = targetButton.querySelector("img");
+            const computerImg = getComputerPokemonImg();
+            UpdateResultImages(playerImg, computerImg);
+
+            playerPokemon = playerImg.getAttribute("data-poke");
+            computerPokemon = computerImg.getAttribute("data-poke");
+
+            const myTimeout = setTimeout(PlayRound,3000,playerPokemon,computerPokemon);
+        }
+
+    });
+
+
+
+}
+
+Game();
