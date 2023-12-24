@@ -91,4 +91,3 @@ function Game()
     Math.floor(ROUND_NUMBER / 2) < userWinNum ? console.log("User has won the GAME") : console.log("Computer has won the Game");
  }
 
- Game();
