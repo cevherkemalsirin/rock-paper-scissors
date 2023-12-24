@@ -3,9 +3,8 @@
     padding: 0;
 }
 
-img{
-    height: 300px;
-    width: auto;
+body{
+    background-color: rgb(230, 230, 230);
 }
 
 .PokeContainer
@@ -13,19 +12,22 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
    /* height: 40vh;*/
     gap:30px;
 }
 
-button{
-    border: 4px solid;
+.poke{
+    border-radius: 50px;
+    border-width: 5px;
 }
-
-img , button{
+.poke img{
+    height: 300px;
+    width: auto;
     border-radius: 50px;
 }
+
 
 .btn--1 {
     background-color: rgba(123, 240, 123, 0.781);
@@ -55,5 +57,44 @@ img , button{
 h1{
     text-align: center;
     font-weight: bold;
+    margin-top: 80px;
+    font-family:fantasy;
+    letter-spacing: 3px;
+    word-spacing: 15px;
+}
+
+.selections, .results{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:50px;
+}
+
+.results{
+    margin-top: 30px;
+}
+.selections img{
+    height: 150px;
+    width: auto;
+    border-radius: 20px;
+}
+.vs{
+    font-family:fantasy;
+    letter-spacing: 3px;
+    font-size: 50px;
+}
+.WinnerText
+{
+    display: flex;
+    font-family:fantasy;
+    letter-spacing: 1px;
+    font-size: 20px;
+    max-width: 60px;
+    justify-content: center;
+    text-align: center;
+    color: goldenrod;
+}
+.playerSelected{
+
 }
 
