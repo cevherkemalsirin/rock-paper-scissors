@@ -1,5 +1,14 @@
 
 const ROUND_NUMBER = 5;
+const WAIT_TIME = 1000;
+let canClick = true;
+let playerPokemon = " ";
+let computerPokemon = " ";
+
+const playerSelectedImg = document.querySelector(".playerSelected");
+const computerSelectedImg = document.querySelector(".computerSelected");
+const winnerTextElement = document.querySelector(".WinnerText");
+
 
 
 function getComputerPokemonImg()
@@ -11,77 +20,114 @@ function getComputerPokemonImg()
 
 function PlayRound(userChoice, computerChoice)
 {
-    console.log(userChoice, computerChoice);
+    let winner = "";
+
     switch(userChoice)
     {
-        case "rock":
+        case "Bulbasaur":
             {
-                if(computerChoice === "scissors")
+                if(computerChoice === "Squirtle")
                 {
-                    return "user";
+                    winner =  "user";
                 }
-                else if(computerChoice === "paper")
+                else if(computerChoice === "Charmender")
                 {
-                    return "computer";
+                    winner =  "computer";
                 }
                 else
                 {
-                    return "draw";
+                    winner = "draw";
                 }
             }
         break;
-        case "paper":
+        case "Charmender":
             {
-                if(computerChoice === "scissors")
+                if(computerChoice === "Bulbasaur")
                 {
-                    return "computer";
+                    winner = "user";
                 }
-                else if(computerChoice === "rock")
+                else if(computerChoice === "Squirtle")
                 {
-                    return "user";
+                    winner = "computer";
                 }
                 else
                 {
-                    return "draw";
+                    winner = "draw";
                 }
             }
         break;
-        case "scissors":
+        case "Squirtle":
             {
-                if(computerChoice === "rock")
+                if(computerChoice === "Charmender")
                 {
-                    return "computer";
+                    winner = "user";
                 }
-                else if(computerChoice === "paper")
+                else if(computerChoice === "Bulbasaur")
                 {
-                    return "user";
+                    winner = "computer";
                 }
                 else
                 {
-                    return "draw";
+                    winner = "draw";
                 }
             }
         break;
     }
+    PrintResults(winner);
 
 }
 
+function PrintResults(winner)
+{
+    switch(winner)
+    {
+        case "user":
+        {
+            winnerTextElement.textContent = `Player ${playerPokemon} has won!`;
+        }break;
+        case "computer":
+        {
+            winnerTextElement.textContent = `Computer ${computerPokemon} has won!`;
+        }break;
+        case "draw":
+        {
+            winnerTextElement.textContent = "DRAW";
+        }
+    }
+    setTimeout(ResetRound, WAIT_TIME * 2);
+}
+
+function ResetRound()
+{
+    playerSelectedImg.setAttribute("src", "/images/question_mark.png");
+    computerSelectedImg.setAttribute("src", "/images/question_mark.png");
+    canClick = true;
+}
+
+function ResetGame()
+{
+    
+}
 
 function Game()
 {
     function UpdateResultImages(playerImg, computerImg)
     {
-        const playerSelectedImg = document.querySelector(".playerSelected");
-        const computerSelectedImg = document.querySelector(".computerSelected");
-
         playerSelectedImg.setAttribute("src",playerImg.getAttribute("src"));
-        computerSelectedImg.setAttribute("src",computerImg.getAttribute("src"));
+        setTimeout(()=>{
+            computerSelectedImg.setAttribute("src",computerImg.getAttribute("src"));
+        },WAIT_TIME);
+    }
+
+    function ResetImages()
+    {
+
     }
 
 
     const pokemonContainer = document.querySelector(".PokeContainer");
     const pokeButtons = document.querySelectorAll(".poke");
-    let playerPokemon = " ";
+
 
     pokemonContainer.addEventListener("mouseover", function(e)
     { 
@@ -113,10 +159,10 @@ function Game()
 
     pokemonContainer.addEventListener("click", function(e)
     {
-        
         e.preventDefault();
         const targetButton = e.target.closest(".poke");
-        if (targetButton) {
+        if (targetButton && canClick) {
+            canClick = false;
             const playerImg = targetButton.querySelector("img");
             const computerImg = getComputerPokemonImg();
             UpdateResultImages(playerImg, computerImg);
@@ -124,7 +170,7 @@ function Game()
             playerPokemon = playerImg.getAttribute("data-poke");
             computerPokemon = computerImg.getAttribute("data-poke");
 
-            const myTimeout = setTimeout(PlayRound,3000,playerPokemon,computerPokemon);
+            const myTimeout = setTimeout(PlayRound,WAIT_TIME,playerPokemon,computerPokemon);
         }
 
     });
