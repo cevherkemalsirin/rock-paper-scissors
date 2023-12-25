@@ -1,1 +1,1 @@
-Simple rps game with pokemon theme with web UI
+Simple rps game with pokemon theme and web UI
