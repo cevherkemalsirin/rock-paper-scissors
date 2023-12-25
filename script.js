@@ -95,7 +95,7 @@ function PrintResults(winner)
             else
             {
                 playerScore++;
-                playerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="images/pokeball.png"></img>`);
+                playerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="./images/pokeball.png"></img>`);
             }
 
         }break;
@@ -109,7 +109,7 @@ function PrintResults(winner)
             else
             {
                 computerScore++;
-                computerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="images/pokeball.png"></img>`);
+                computerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="./images/pokeball.png"></img>`);
             }
         }break;
         case "draw":
@@ -122,8 +122,8 @@ function PrintResults(winner)
 
 function ResetRound()
 {
-    playerSelectedImg.setAttribute("src", "/images/question_mark.png");
-    computerSelectedImg.setAttribute("src", "/images/question_mark.png");
+    playerSelectedImg.setAttribute("src", "./images/question_mark.png");
+    computerSelectedImg.setAttribute("src", "./images/question_mark.png");
     winnerTextElement.textContent = "";
     canClick = true;
 }
