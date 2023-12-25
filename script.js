@@ -4,10 +4,14 @@ const WAIT_TIME = 1000;
 let canClick = true;
 let playerPokemon = " ";
 let computerPokemon = " ";
+let playerScore = 0;
+let computerScore = 0;
 
 const playerSelectedImg = document.querySelector(".playerSelected");
 const computerSelectedImg = document.querySelector(".computerSelected");
 const winnerTextElement = document.querySelector(".WinnerText");
+const playerPokeballs = document.querySelector(".pokeballs.player");
+const computerPokeballs = document.querySelector(".pokeballs.computer");
 
 
 
@@ -84,10 +88,29 @@ function PrintResults(winner)
         case "user":
         {
             winnerTextElement.textContent = `Player ${playerPokemon} has won!`;
+            if(playerScore >= ROUND_NUMBER - 1)
+            {
+                ResetGame();
+            }
+            else
+            {
+                playerScore++;
+                playerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="images/pokeball.png"></img>`);
+            }
+
         }break;
         case "computer":
         {
             winnerTextElement.textContent = `Computer ${computerPokemon} has won!`;
+            if(computerScore >= ROUND_NUMBER - 1)
+            {
+                ResetGame();
+            }
+            else
+            {
+                computerScore++;
+                computerPokeballs.insertAdjacentHTML("beforeend", `<img class = "pokeball" src="images/pokeball.png"></img>`);
+            }
         }break;
         case "draw":
         {
@@ -101,12 +124,16 @@ function ResetRound()
 {
     playerSelectedImg.setAttribute("src", "/images/question_mark.png");
     computerSelectedImg.setAttribute("src", "/images/question_mark.png");
+    winnerTextElement.textContent = "";
     canClick = true;
 }
 
 function ResetGame()
 {
-    
+    playerScore = 0;
+    computerScore = 0;
+    computerPokeballs.innerHTML = "";
+    playerPokeballs.innerHTML = "";
 }
 
 function Game()
@@ -118,12 +145,6 @@ function Game()
             computerSelectedImg.setAttribute("src",computerImg.getAttribute("src"));
         },WAIT_TIME);
     }
-
-    function ResetImages()
-    {
-
-    }
-
 
     const pokemonContainer = document.querySelector(".PokeContainer");
     const pokeButtons = document.querySelectorAll(".poke");

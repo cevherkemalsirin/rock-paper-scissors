@@ -71,7 +71,11 @@ h1{
 }
 
 .results{
-    margin-top: 30px;
+    margin-top: 10px;
+    gap:27px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .selections img{
     height: 150px;
@@ -88,6 +92,9 @@ h1{
 .WinnerText
 {
     display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    min-width: 120px;
     font-family:fantasy;
     letter-spacing: 1px;
     font-size: 20px;
@@ -100,14 +107,31 @@ h1{
 
 }
 
-
-
 .notShine img{
     height: 200px;
     width: auto;
     opacity: 0.5;
 }
+
 .shine{
     border-color: gold;
    background-color: gold;
+}
+
+.pokeballs{
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 120px;
+    gap:5px;
+    align-self: baseline;
+
+}
+
+.pokeballs.computer{
+    flex-direction: row-reverse;
+}
+
+.pokeball{
+    height: 20px;
+    width: auto;
 }
